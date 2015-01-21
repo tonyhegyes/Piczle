@@ -1,0 +1,65 @@
+﻿<Window x:Class="puzzle.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="450" Width="500" Closed="Window_Closing" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.75, 0.75" StartPoint="0.5,0">
+                <GradientStop Color="White" Offset="-0.25"/>
+                <GradientStop Color="SkyBlue" Offset="0.5"/>
+                <GradientStop Color="White" Offset="1.75"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.Resources>
+            <Style x:Key="buttonBackground" TargetType="{x:Type Button}">
+                <Setter Property="SnapsToDevicePixels" Value="true"/>
+                <Setter Property="OverridesDefaultStyle" Value="true"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="Border" CornerRadius="2" BorderThickness="0" Background="Transparent" BorderBrush="Transparent">
+                                <ContentPresenter Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsKeyboardFocused" Value="true">
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#202020" />
+                                </Trigger>
+                                <Trigger Property="IsDefaulted" Value="true">
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#202020" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter TargetName="Border" Property="Background" Value="Orange" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter TargetName="Border" Property="Background" Value="#E0E0E0" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#606060" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter TargetName="Border" Property="Background" Value="#EEEEEE" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#AAAAAA" />
+                                    <Setter Property="Foreground" Value="#888888"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        
+        <Label Name="welcome_label" Content="Label" Margin="0,10,10,0" Width="Auto" Height="50" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold" FontSize="30" FontStretch="UltraExpanded" />
+        <ComboBox Name="language_comboBox" Margin="0,20,10,0" Width="55" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" SelectionChanged="language_comboBox_SelectionChanged" Grid.Column="1" />
+        
+        <Border Name="regularGame_border" Margin="0,120,0,0" Width="250" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" Background="GhostWhite" CornerRadius="9">
+            <Button BorderThickness="0" Style="{StaticResource buttonBackground}" Content="Button" Name="regularGame_button"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="250" Height="40" Click="regularGame_button_Click" />
+        </Border>
+        <Border Name="customGame_border" Margin="0,190,0,0" Width="250" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" Background="GhostWhite" CornerRadius="9">
+            <Button Style="{StaticResource buttonBackground}" Content="Button" Name="continueGame_button" BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250" Height="40" Click="continueGame_button_Click" />
+        </Border>
+        <Border Name="highScore_border" Margin="0,260,0,0" Width="250" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" Background="GhostWhite" CornerRadius="9">
+            <Button Style="{StaticResource buttonBackground}" Content="Button" Name="highScore_button" BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250" Height="40" Click="highScore_button_Click" />
+        </Border>
+        <Border Name="exit_border" Margin="0,330,0,0" Width="250" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" Background="GhostWhite" CornerRadius="9">
+            <Button Style="{StaticResource buttonBackground}" Content="Button" Name="exit_button" BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="250" Height="40" Click="Window_Closing" />
+        </Border>
+    </Grid>
+</Window>
